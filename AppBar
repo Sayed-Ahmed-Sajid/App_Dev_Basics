@@ -1,0 +1,139 @@
+import 'package:flutter/material.dart'; 
+// Flutter er Material Design package import kora holo. 
+// AppBar, Scaffold, Colors etc. use korte hole eta lagbe.
+
+void main() {
+  runApp(const MyApp());
+  // Flutter app run kora holo. MyApp widget ke root hishebe use kora holo.
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+  // StatelessWidget use kora holo karon MyApp er state change hobe na.
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      // Debug banner off kora holo
+
+      theme: ThemeData(
+        primarySwatch: Colors.lime,
+        // Primary color set kora holo (light theme er jonno)
+
+        appBarTheme: const AppBarTheme(
+          elevation: 10,
+          // AppBar er shadow depth
+
+          titleTextStyle: TextStyle(
+            fontSize: 22,
+            fontWeight: FontWeight.bold,
+            color: Colors.greenAccent, // Default title color
+          ),
+        ),
+      ),
+
+      darkTheme: ThemeData(
+        primarySwatch: Colors.blue,
+        // Dark theme er primary color
+      ),
+      themeMode: ThemeMode.system,
+      // System theme follow korbe (light/dark)
+
+      home: const HomeActivity(),
+      // Home screen set kora holo HomeActivity widget diye
+    );
+  }
+}
+
+class HomeActivity extends StatelessWidget {
+  const HomeActivity({super.key});
+  // HomeActivity stateless, karon ekhane kono dynamic state nei
+
+  MySnackBar(String message, BuildContext context) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(message)),
+    );
+    // Function for showing SnackBar (temporary message)
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      // Scaffold holo screen er basic layout (AppBar + Body etc.)
+      appBar: AppBar(
+        // AppBar holo screen er top bar
+
+        // centerTitle: true,
+        titleSpacing: 10,
+        toolbarHeight: 70,
+        toolbarOpacity: 1.0,
+        elevation: 12,
+        backgroundColor: Colors.transparent,
+        // Transparent background, gradient er jonno
+
+        actions: [
+          IconButton(onPressed: (){MySnackBar("I'm Comments",context);}, icon: Icon(Icons.comment_outlined)),
+          IconButton(onPressed: (){MySnackBar("I'm Search",context);}, icon: Icon(Icons.search)),
+          IconButton(onPressed: (){MySnackBar("I'm Settings",context);}, icon: Icon(Icons.settings)),
+          IconButton(onPressed: (){MySnackBar("I'm Email",context);}, icon: Icon(Icons.alternate_email_outlined)),
+          // AppBar er side action buttons, click korle SnackBar show korbe
+        ],
+
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            bottom: Radius.circular(20),  
+            // AppBar er bottom corners circular
+          ),
+        ),
+
+        titleTextStyle: const TextStyle(
+          fontSize: 24,
+          fontWeight: FontWeight.bold,
+          color: Colors.greenAccent, 
+          letterSpacing: 1.2,
+          fontFamily: 'Roboto',
+        ),
+        // Title text style
+
+        title: const Text("Inventory App"),
+        // AppBar er title
+
+        flexibleSpace: Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              colors: [Colors.deepPurple, Colors.pinkAccent],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+            ),
+            borderRadius: BorderRadius.vertical(
+              bottom: Radius.circular(20), // Match shape radius
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black26,
+                offset: Offset(0, 4),
+                blurRadius: 6,
+              ),
+            ],
+          ),
+          // FlexibleSpace er jonno gradient + shadow + rounded corner
+        ),
+
+        foregroundColor: Colors.greenAccent, 
+        // Icon & action button color
+      ),
+
+      body: const Center(
+        child: Text(
+          "Hello Flutter!",
+          style: TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        // Screen er main content
+      ),
+    );
+  }
+}
