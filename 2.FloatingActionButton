@@ -1,0 +1,66 @@
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: ThemeData(
+        primarySwatch: Colors.green,
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.amber,
+        ),
+      ),
+      darkTheme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      themeMode: ThemeMode.system,
+      debugShowCheckedModeBanner: false,
+      home: const HomeActivity(),
+    );
+  }
+}
+
+class HomeActivity extends StatelessWidget {
+  const HomeActivity({super.key});
+
+  void showMySnackBar(String message, BuildContext context) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(message)),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Floating Action Button Example"),
+      ),
+      body: const Center(
+        child: Text("FAB Example with all properties"),
+      ),
+
+      floatingActionButton: FloatingActionButton(
+        elevation: 12, // ডিফল্ট elevation
+        highlightElevation: 20, // প্রেস করলে elevation effect
+        backgroundColor: Colors.deepPurple, // বাটনের ব্যাকগ্রাউন্ড রঙ
+        foregroundColor: Colors.white, // আইকনের রঙ
+        splashColor: Colors.orange, // ক্লিক করলে splash রঙ
+        tooltip: "Add New Item", // hover করলে দেখাবে (desktop/web এ বেশি useful)
+        mini: false, // true দিলে ছোট FAB হবে
+        shape: RoundedRectangleBorder( // বাটনের আকৃতি পরিবর্তন
+          borderRadius: BorderRadius.circular(20),
+        ),
+        onPressed: () {
+          showMySnackBar("Floating Button Pressed!", context);
+        },
+        child: const Icon(Icons.add), // বাটনের আইকন
+      ),
+    );
+  }
+}
