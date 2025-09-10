@@ -1,0 +1,43 @@
+bottomNavigationBar: BottomNavigationBar(
+  currentIndex: 0,
+  type: BottomNavigationBarType.fixed, // fixed type
+  backgroundColor: Colors.blue, // bar background color
+  selectedItemColor: Colors.white, // selected icon & label color
+  unselectedItemColor: Colors.grey[300], // unselected color
+  iconSize: 28, // icon size
+  elevation: 10, // shadow effect
+  selectedLabelStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+  unselectedLabelStyle: const TextStyle(fontSize: 14),
+  items: const [
+    BottomNavigationBarItem(
+      icon: Icon(Icons.home),
+      label: "Home",
+    ),
+    BottomNavigationBarItem(
+      icon: Icon(Icons.search),
+      label: "Search",
+    ),
+    BottomNavigationBarItem(
+      icon: Icon(Icons.settings),
+      label: "Settings",
+    ),
+  ],
+  onTap: (int index) {
+    // snackbar message
+    if (index == 0) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Home Clicked!")),
+      );
+    } else if (index == 1) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Search Clicked!")),
+      );
+    } else if (index == 2) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text("Settings Clicked!")),
+      );
+    }
+
+    // page navigation বা state change যোগ করতে চাইলে এখানে setState use করতে পারো
+  },
+),
