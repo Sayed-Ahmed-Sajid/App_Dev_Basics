@@ -1,0 +1,82 @@
+drawer: Drawer(
+  // Drawer হলো screen এর left থেকে slide করা menu বা sidebar
+  child: ListView(
+    // ListView দিয়ে drawer এর ভিতরের items vertically scrollable করা হয়
+    padding: EdgeInsets.zero,
+    // DrawerHeader ও ListTile start হয় screen এর top থেকে, extra padding না নিতে zero set করা হয়
+    children: [
+      // drawer এর ভিতরের সব child widgets রাখার জন্য children list
+      UserAccountsDrawerHeader(
+        // UserAccountsDrawerHeader হলো special drawer header যেটাতে profile info দেখানো হয়
+        decoration: BoxDecoration(color: Colors.black),
+        // header er background color set kora holo
+        accountName: const Text(
+          "Sajid",
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+        ),
+        // accountName holo user এর নাম, TextStyle দিয়ে font size & weight set kora holo
+        accountEmail: const Text("sajid@gmail.com"),
+        // accountEmail holo user এর email address
+        currentAccountPicture: const CircleAvatar(
+          // circular avatar for profile picture
+          backgroundImage: NetworkImage(
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDn735yHmCLrJh4i_75aMjt6p6-EzUs6srUg&s",
+          ),
+        ),
+        onDetailsPressed: () {
+          // user account details icon এ click করলে ei function call hobe
+          MySnackBar("This is profile", context);
+          // SnackBar show korbe “This is profile” message
+        },
+      ),
+      ListTile(
+        // Drawer item 1
+        leading: const Icon(Icons.home),
+        // Icon drawer item er left side e dekhabe
+        title: const Text("Home"),
+        // Drawer item er text
+        onTap: () {
+          // tap event handler
+          Navigator.pop(context);
+          // Drawer close kora, context diye pop call kora hoy
+          MySnackBar("Home Clicked!", context);
+          // SnackBar show korbe
+        },
+      ),
+      ListTile(
+        // Drawer item 2
+        leading: const Icon(Icons.contact_mail),
+        // icon set kora holo
+        title: const Text("Contact"),
+        // text set kora holo
+        onTap: () {
+          Navigator.pop(context);
+          MySnackBar("Contact Clicked!", context);
+        },
+      ),
+      ListTile(
+        // Drawer item 3
+        leading: const Icon(Icons.person),
+        title: const Text("Profile"),
+        onTap: () {
+          Navigator.pop(context);
+          MySnackBar("Profile Clicked!", context);
+        },
+      ),
+      ListTile(
+        // Drawer item 4
+        leading: const Icon(Icons.email),
+        title: const Text("Mail"),
+        onTap: () {
+          Navigator.pop(context);
+          MySnackBar("Mail Clicked!", context);
+        },
+      ),
+      ListTile(
+        // Drawer item 5
+        leading: const Icon(Icons.phone),
+        title: const Text("Phone"),
+        onTap: () {
+          Navigator.pop(context);
+          MySnackBar("Phone Clicked!", context);
+        }
