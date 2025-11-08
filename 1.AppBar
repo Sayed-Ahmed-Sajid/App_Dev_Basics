@@ -96,7 +96,7 @@ class HomeActivity extends StatelessWidget {
         ),
         // Title text style
 
-        title: const Text("Inventory App"),
+        title: const Text("My App"),
         // AppBar er title
 
         flexibleSpace: Container(
